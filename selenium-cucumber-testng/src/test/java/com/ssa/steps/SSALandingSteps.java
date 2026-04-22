@@ -6,7 +6,6 @@ import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -21,13 +20,13 @@ public class SSALandingSteps {
 
     @Before
     public void setUp() {
-        WebDriverManager.chromedriver().setup();
-
+        // Selenium 4.6+ includes Selenium Manager which auto-downloads ChromeDriver.
         ChromeOptions options = new ChromeOptions();
 
         // -Dheadless=true is passed by Maven Surefire from the CI workflow.
         // Locally it defaults to false so you can watch the browser run.
-        if (Boolean.parseBoolean(System.getProperty("headless", "false"))) {
+        boolean headless = Boolean.parseBoolean(System.getProperty("headless", "false"));
+        if (headless) {
             options.addArguments(
                 "--headless=new",
                 "--no-sandbox",
@@ -38,7 +37,10 @@ public class SSALandingSteps {
         }
 
         driver = new ChromeDriver(options);
-        driver.manage().window().maximize();
+        // maximize() is not supported in headless mode
+        if (!headless) {
+            driver.manage().window().maximize();
+        }
         landingPage = new SSALandingPage(driver);
     }
 

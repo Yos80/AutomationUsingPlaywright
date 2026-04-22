@@ -17,7 +17,6 @@
     <selenium.version>4.20.0</selenium.version>
     <cucumber.version>7.17.0</cucumber.version>
     <testng.version>7.10.2</testng.version>
-    <wdm.version>5.8.0</wdm.version>
   </properties>
 
   <dependencies>
@@ -27,13 +26,6 @@
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>
       <version>${selenium.version}</version>
-    </dependency>
-
-    <!-- Automatic driver binary management -->
-    <dependency>
-      <groupId>io.github.bonigarcia</groupId>
-      <artifactId>webdrivermanager</artifactId>
-      <version>${wdm.version}</version>
     </dependency>
 
     <!-- Cucumber Java step definitions -->
