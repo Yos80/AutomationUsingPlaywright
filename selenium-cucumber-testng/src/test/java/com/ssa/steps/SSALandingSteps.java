@@ -77,6 +77,8 @@ public class SSALandingSteps {
 
     @Then("a {string} link should be visible")
     public void a_link_should_be_visible(String linkText) {
+        // isHeroSignInVisible checks the sign-in CTA (a[href='/myaccount']),
+        // which is the only link this step is used to verify.
         Assert.assertTrue(
             landingPage.isHeroSignInVisible(),
             "Expected a visible '" + linkText + "' link on the page"

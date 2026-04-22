@@ -22,8 +22,14 @@ name: Playwright Tests
 on:
   push:
     branches: [main]
+    paths:
+      - 'playwright/**'
+      - '.github/workflows/playwright.yml'
   pull_request:
     branches: [main]
+    paths:
+      - 'playwright/**'
+      - '.github/workflows/playwright.yml'
 
 # ─── JOBS ─────────────────────────────────────────────────────────────────────
 # A workflow contains one or more jobs. Each job runs on its own machine.
@@ -57,6 +63,7 @@ jobs:
       # Step 3: Install your project's npm dependencies.
       # Same as running `npm install` locally.
       - name: Install dependencies
+        working-directory: playwright
         run: npm install
 
       # Step 4: Install Playwright's browser binaries.
@@ -64,6 +71,7 @@ jobs:
       # browser executables (Chromium, Firefox, etc.) are downloaded separately.
       # --with-deps also installs OS-level dependencies needed on Linux.
       - name: Install Playwright browsers
+        working-directory: playwright
         run: npx playwright install --with-deps
 
       # Step 5: Run all your Playwright tests.
@@ -73,6 +81,7 @@ jobs:
       #   - workers: 1  (run tests sequentially to avoid resource contention)
       #   - forbidOnly: true  (fail if test.only was left in accidentally)
       - name: Run Playwright tests
+        working-directory: playwright
         run: npx playwright test
 
       # Step 6: Upload the HTML report as an artifact.
@@ -86,6 +95,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: playwright-report
-          path: playwright-report/
+          path: playwright/playwright-report/
           # Keep the report for 30 days before GitHub deletes it
           retention-days: 30

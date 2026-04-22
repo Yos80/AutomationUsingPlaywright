@@ -21,45 +21,58 @@ A hands-on project for learning [Playwright](https://playwright.dev/) test autom
 
 | Concept | Where |
 |---|---|
-| Basic locators — `getByPlaceholder`, `getByRole`, `getByTestId`, `getByLabel` | `tests/todo/todo-flat.spec.ts` + `tests/todo/todo-fixtures.spec.ts` |
+| Basic locators — `getByPlaceholder`, `getByRole`, `getByTestId`, `getByLabel` | `playwright/tests/todo/todo-flat.spec.ts` + `playwright/tests/todo/todo-fixtures.spec.ts` |
 | Assertions (`toBeVisible`, `toContainText`, `toHaveCount`, `toHaveClass`) | both todo spec files |
-| Page Object Model (POM) | `tests/todo/pages/TodoPage.ts` + `tests/basics/locators.spec.ts` |
-| `test.describe` groups and `beforeEach` hooks | `tests/basics/locators.spec.ts` |
+| Page Object Model (POM) | `playwright/tests/todo/pages/TodoPage.ts` + `playwright/tests/basics/locators.spec.ts` |
+| `test.describe` groups and `beforeEach` hooks | `playwright/tests/basics/locators.spec.ts` |
 | Hover interactions and dynamic UI | todo spec files |
-| API testing with `request` fixture | `tests/todo/todo-api.spec.ts` |
-| Playwright Agents — Planner, Generator, Healer | `tests/saucedemo/` + `specs/saucedemo-plan.md` |
-| `data-test` attribute selectors | `tests/saucedemo/` |
-| Visual regression testing (`toHaveScreenshot`) | `tests/saucedemo/visual.spec.ts` |
-| On-failure screenshots | `playwright.config.ts` — `screenshot: 'only-on-failure'` |
+| API testing with `request` fixture | `playwright/tests/todo/todo-api.spec.ts` |
+| Playwright Agents — Planner, Generator, Healer | `playwright/tests/saucedemo/` + `playwright/specs/saucedemo-plan.md` |
+| `data-test` attribute selectors | `playwright/tests/saucedemo/` |
+| Visual regression testing (`toHaveScreenshot`) | `playwright/tests/saucedemo/visual.spec.ts` |
+| On-failure screenshots | `playwright/playwright.config.ts` — `screenshot: 'only-on-failure'` |
 
 ---
 
 ## Project structure
 
 ```
-playwright-learning/
-├── specs/
-│   └── saucedemo-plan.md          # AI-generated test plan (Planner output)
-├── tests/
-│   ├── basics/
-│   │   └── locators.spec.ts       # Core locators + POM style tests
-│   ├── todo/
-│   │   ├── pages/
-│   │   │   └── TodoPage.ts        # Page Object Model for TodoMVC
-│   │   ├── todo-flat.spec.ts      # Core flows written inline (no POM)
-│   │   ├── todo-fixtures.spec.ts  # Same flows using fixtures
-│   │   └── todo-api.spec.ts       # API testing with JSONPlaceholder
-│   └── saucedemo/
-│       ├── pages/
-│       │   └── SaucePage.ts       # Page Object Model for SauceDemo
-│       ├── visual.spec.ts-snapshots/  # Baseline PNG files (committed to git)
-│       ├── auth.spec.ts           # Login, logout, error cases
-│       ├── products.spec.ts       # Catalog, sorting, product detail
-│       ├── cart.spec.ts           # Add, remove, continue shopping
-│       ├── checkout.spec.ts       # Happy path, validation, cancel
-│       └── visual.spec.ts         # Visual regression with toHaveScreenshot
-├── playwright.config.ts           # Playwright configuration
-└── package.json
+TinkeringWithAutomation/
+├── playwright/                    # Playwright / TypeScript project
+│   ├── specs/
+│   │   └── saucedemo-plan.md          # AI-generated test plan (Planner output)
+│   ├── tests/
+│   │   ├── basics/
+│   │   │   └── locators.spec.ts       # Core locators + POM style tests
+│   │   ├── todo/
+│   │   │   ├── pages/
+│   │   │   │   └── TodoPage.ts        # Page Object Model for TodoMVC
+│   │   │   ├── todo-flat.spec.ts      # Core flows written inline (no POM)
+│   │   │   ├── todo-fixtures.spec.ts  # Same flows using fixtures
+│   │   │   └── todo-api.spec.ts       # API testing with JSONPlaceholder
+│   │   └── saucedemo/
+│   │       ├── pages/
+│   │       │   └── SaucePage.ts       # Page Object Model for SauceDemo
+│   │       ├── visual.spec.ts-snapshots/  # Baseline PNG files (committed to git)
+│   │       ├── auth.spec.ts           # Login, logout, error cases
+│   │       ├── products.spec.ts       # Catalog, sorting, product detail
+│   │       ├── cart.spec.ts           # Add, remove, continue shopping
+│   │       ├── checkout.spec.ts       # Happy path, validation, cancel
+│   │       └── visual.spec.ts         # Visual regression with toHaveScreenshot
+│   ├── playwright.config.ts           # Playwright configuration
+│   └── package.json
+└── selenium-cucumber-testng/      # Selenium / Java / Maven project
+    ├── pom.xml
+    └── src/
+        ├── main/java/com/ssa/pages/
+        │   ├── BasePage.java
+        │   └── SSALandingPage.java
+        └── test/
+            ├── java/com/ssa/
+            │   ├── runner/TestRunner.java
+            │   └── steps/SSALandingSteps.java
+            └── resources/features/
+                └── ssa_landing.feature
 ```
 
 ### Two todo spec files — why?
@@ -86,6 +99,7 @@ The `tests/saucedemo/` lesson demonstrates the Playwright Agents workflow:
 **Install dependencies**
 
 ```bash
+cd playwright
 npm install
 npx playwright install
 ```

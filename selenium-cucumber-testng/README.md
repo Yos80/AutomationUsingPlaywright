@@ -9,7 +9,7 @@ Behavior-driven tests for [https://www.ssa.gov](https://www.ssa.gov) using Java 
 | Layer | Library | Version |
 |---|---|---|
 | Browser automation | Selenium WebDriver | 4.20.0 |
-| Driver management | WebDriverManager | 5.8.0 |
+| Driver management | Selenium Manager (built-in) | — |
 | BDD / Gherkin | Cucumber Java | 7.17.0 |
 | Test runner | TestNG via cucumber-testng | 7.17.0 / 7.10.2 |
 | Build tool | Maven | 3.9.x |
@@ -58,7 +58,7 @@ Feature: SSA Landing Page
 |---|---|
 | JDK 17+ | [Temurin](https://adoptium.net) or any distribution |
 | Maven 3.9+ | `~/maven/bin/mvn` or system Maven |
-| Google Chrome | Any recent version — WebDriverManager auto-downloads the matching ChromeDriver |
+| Google Chrome | Any recent version — Selenium Manager auto-downloads the matching ChromeDriver |
 
 ---
 
