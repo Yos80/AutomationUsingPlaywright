@@ -23,3 +23,17 @@ Feature: SSA Landing Page
   Scenario: Searching for a topic navigates to results
     When I search for "retirement benefits"
     Then the search results page should be displayed
+
+  Scenario: Sign-in link navigates to the my Social Security login page
+    When I click the sign-in link
+    Then the URL should contain "ssa.gov/myaccount"
+
+  Scenario: Clicking on "Get a benefits estimate" and validating we got There
+    When I click on the "Get a benefits estimate" link
+    Then the URL should contain "https://www.ssa.gov/prepare/get-benefits-estimate"
+    And the title should say "Get a benefits estimate | SSA"
+
+  Scenario: Clicking list item "Immigration" and validating we got There
+    When I click on the "Immigration" link
+    Then the URL should contain "https://www.ssa.gov/personal-record/update-citizenship-or-immigration-status"
+    And the title should say "Update citizenship or immigration status | SSA"

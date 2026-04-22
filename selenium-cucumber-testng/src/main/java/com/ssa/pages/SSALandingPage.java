@@ -64,6 +64,13 @@ public class SSALandingPage extends BasePage {
         }
     }
 
+    /** Clicks the hero sign-in CTA and waits for navigation away from the home page. */
+    public void clickSignIn() {
+        WebElement link = wait.until(ExpectedConditions.elementToBeClickable(heroSignIn));
+        link.click();
+        wait.until(d -> !d.getCurrentUrl().equals(URL + "/"));
+    }
+
     /** Returns true when the hero sign-in CTA link is visible on screen. */
     public boolean isHeroSignInVisible() {
         try {
@@ -107,5 +114,12 @@ public class SSALandingPage extends BasePage {
     /** Returns the current URL of whichever window the driver is focused on. */
     public String getCurrentUrl() {
         return driver.getCurrentUrl();
+    }
+
+    public void clickHeadingByText(String headingText) {
+        By locator = By.xpath("//main//a[normalize-space()='" + headingText + "']");
+        WebElement heading = wait.until(ExpectedConditions.elementToBeClickable(locator));
+        heading.click();
+        wait.until(d -> !d.getCurrentUrl().equals(URL + "/"));
     }
 }

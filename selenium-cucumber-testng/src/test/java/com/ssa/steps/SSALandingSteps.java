@@ -94,6 +94,20 @@ public class SSALandingSteps {
         );
     }
 
+    @When("I click the sign-in link")
+    public void i_click_the_sign_in_link() {
+        landingPage.clickSignIn();
+    }
+
+    @Then("the URL should contain {string}")
+    public void the_url_should_contain(String expectedUrlFragment) {
+        String current = landingPage.getCurrentUrl();
+        Assert.assertTrue(
+            current.contains(expectedUrlFragment),
+            "Expected URL to contain '" + expectedUrlFragment + "' but was: '" + current + "'"
+        );
+    }
+
     @When("I search for {string}")
     public void i_search_for(String query) {
         landingPage.search(query);
@@ -108,4 +122,16 @@ public class SSALandingSteps {
             "Expected to navigate away from the home page after submitting search"
         );
     }
+    @When("I click on the {string} link")
+public void i_click_on_the_link(String string) {
+    landingPage.clickHeadingByText(string);
+}
+@Then("the title should say {string}")
+public void the_title_should_say(String string) {
+    String actual = landingPage.getTitle();
+    Assert.assertEquals(
+        actual, string,
+        "Title mismatch"
+    );
+}
 }
