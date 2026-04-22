@@ -1,6 +1,6 @@
 # Selenium + Cucumber + TestNG — SSA.gov Test Suite
 
-Behavior-driven tests for [https://www.ssa.gov](https://www.ssa.gov) using Java, Selenium WebDriver, Cucumber (Gherkin), and TestNG.
+Behavior-driven tests for [https://www.ssa.gov](https://www.ssa.gov) using Java 17, Selenium WebDriver, Cucumber (Gherkin), and TestNG.
 
 ---
 
